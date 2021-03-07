@@ -8,7 +8,6 @@ import TableRow from '@material-ui/core/TableRow';
 import TableSortLabel from '@material-ui/core/TableSortLabel';
 import TablePagination from '@material-ui/core/TablePagination';
 import Checkbox from '@material-ui/core/Checkbox';
-import Tooltip from '@material-ui/core/Tooltip';
 import { withStyles } from '@material-ui/core/styles';
 import elementOptions from '../constants/elementOptions.json';
 import TableTooltipCell from './TableTooltipCell.js'
@@ -101,14 +100,12 @@ class CardsTable extends Component {
             case 'partyAbility2':
               if (card.partyAbility2Conditions) {
                 return (
-                  <Tooltip
+                  <TableTooltipCell
                     key={`${card.ID}-${header.id}`}
+                    id={`${card.ID}-${header.id}`}
                     title={`条件:${card.partyAbility2Conditions}`}
-                    placement="right"
-                    arrow
-                    disableFocusListener>
-                    <TableCell>{ `${card[header.id]}*` }</TableCell>
-                  </Tooltip>
+                    cell={`${card[header.id]}*`}
+                  />
                 )
               } else {
                 return <TableCell key={`${card.ID}-${header.id}`}>{ card[header.id] }</TableCell>
@@ -116,14 +113,12 @@ class CardsTable extends Component {
             case 'ability1':
               if (card.ability1Conditions) {
                 return (
-                  <Tooltip
+                  <TableTooltipCell
                     key={`${card.ID}-${header.id}`}
+                    id={`${card.ID}-${header.id}`}
                     title={`条件:${card.ability1Conditions}`}
-                    placement="right"
-                    arrow
-                    disableFocusListener>
-                    <TableCell>{ `${card[header.id]}*` }</TableCell>
-                  </Tooltip>
+                    cell={`${card[header.id]}*`}
+                  />
                 )
               } else {
                 return <TableCell key={`${card.ID}-${header.id}`}>{ card[header.id] }</TableCell>
@@ -131,14 +126,12 @@ class CardsTable extends Component {
             case 'ability2':
               if (card.ability2Conditions) {
                 return (
-                  <Tooltip
+                  <TableTooltipCell
                     key={`${card.ID}-${header.id}`}
+                    id={`${card.ID}-${header.id}`}
                     title={`条件:${card.ability2Conditions}`}
-                    placement="right"
-                    arrow
-                    disableFocusListener>
-                    <TableCell>{ `${card[header.id]}*` }</TableCell>
-                  </Tooltip>
+                    cell={`${card[header.id]}*`}
+                  />
                 )
               } else {
                 return <TableCell key={`${card.ID}-${header.id}`}>{ card[header.id] }</TableCell>
@@ -146,14 +139,12 @@ class CardsTable extends Component {
             case 'ability3':
               if (card.ability3Conditions) {
                 return (
-                  <Tooltip
+                  <TableTooltipCell
                     key={`${card.ID}-${header.id}`}
+                    id={`${card.ID}-${header.id}`}
                     title={`条件:${card.ability3Conditions}`}
-                    placement="right"
-                    arrow
-                    disableFocusListener>
-                    <TableCell>{ `${card[header.id]}*` }</TableCell>
-                  </Tooltip>
+                    cell={`${card[header.id]}*`}
+                  />
                 )
               } else {
                 return <TableCell key={`${card.ID}-${header.id}`}>{ card[header.id] }</TableCell>
@@ -161,14 +152,12 @@ class CardsTable extends Component {
             case 'ability4':
               if (card.ability4Conditions) {
                 return (
-                  <Tooltip
+                  <TableTooltipCell
                     key={`${card.ID}-${header.id}`}
-                    title={`条件:${card.ability3Conditions}`}
-                    placement="right"
-                    arrow
-                    disableFocusListener>
-                    <TableCell>{ `${card[header.id]}*` }</TableCell>
-                  </Tooltip>
+                    id={`${card.ID}-${header.id}`}
+                    title={`条件:${card.ability4Conditions}`}
+                    cell={`${card[header.id]}*`}
+                  />
                 )
               } else {
                 return <TableCell key={`${card.ID}-${header.id}`}>{ card[header.id] }</TableCell>

@@ -47,9 +47,8 @@ class CardsTable extends Component {
 
   setTableHeight () {
     const haederHeight = 119
-    const conditionsRowHeight = 62
     const tableFooterHeight = 52
-    let tableHeight = window.innerHeight - haederHeight - conditionsRowHeight - tableFooterHeight
+    let tableHeight = window.innerHeight - haederHeight - tableFooterHeight
     this.setState({ tableHeight: tableHeight });
   }
 
@@ -59,76 +58,6 @@ class CardsTable extends Component {
     this.setState({ order: isAsc ? 'desc' : 'asc' });
     this.setState({ orderBy: property });
   };
-
-  onSelectAllClick (event) {
-    if (event.target.checked) {
-      const allCardIds = this.props.cards.map(card => card.ID)
-      this.setState({ selectedCardIds: allCardIds });
-      this.props.setSelectedCardIds(allCardIds);
-    } else {
-      this.setState({ selectedCardIds: [] });
-      this.props.setSelectedCardIds([]);
-    }
-  };
-
-  changeSelectCardCheckbox (selectCardId, event) {
-    if (event.target.checked) {
-      this.setState({
-        selectedCardIds: [
-          ...this.state.selectedCardIds,selectCardId
-        ]
-      });
-      this.props.setSelectedCardIds([
-        ...this.state.selectedCardIds,selectCardId
-      ]);
-    } else {
-      this.setState({
-        selectedCardIds: this.state.selectedCardIds.filter(cardId => cardId !== selectCardId)
-      });
-      this.props.setSelectedCardIds(
-        this.state.selectedCardIds.filter(cardId => cardId !== selectCardId)
-      );
-    }
-  };
-
-  selectReset () {
-    this.setState({ selectedCardIds: [] });
-  }
-
-  renderSelectCheckBox () {
-    if (this.props.clientId) {
-      return(
-        <TableCell>
-          <Checkbox onChange={event => this.onSelectAllClick(event)}/>
-        </TableCell>
-      )
-    } else {
-      return null
-    }
-  };
-
-  renderPossessionCheckBox () {
-    const { orderBy, order } = this.state;
-    const { clientId } = this.props;
-    if (clientId) {
-      return (
-        <TableCell>
-          <TableSortLabel
-            style={{ whiteSpace: 'nowrap', minWidth: '50px' }}
-            active={orderBy === 'possession'}
-            direction={orderBy === 'possession' ? order : 'asc'}
-            onClick={() => this.handleRequestSort('possession')}
-          >
-            所持
-          </TableSortLabel>
-        </TableCell>
-      )
-    } else {
-      return null
-    }
-  }
-
-  
 
   makeRarityLabel (rarity) {
     switch (rarity) {
@@ -150,26 +79,9 @@ class CardsTable extends Component {
   }
 
   tableBodyCell (card) {
-    const {
-      headers,
-      clientId
-    } = this.props;
+    const { headers } = this.props;
     return (
       <TableRow key={card.ID}>
-        {clientId ?
-          <TableCell key={`${card.ID}-check`}>
-            <Checkbox
-              checked={this.isChecked(card.ID)}
-              onChange={event => this.changeSelectCardCheckbox(card.ID, event)}/>
-          </TableCell> :
-          null}
-        {clientId ?
-          <TableCell key={`${card.ID}-isPossession`}>
-            <Checkbox
-              disabled
-              checked={this.isPossession(card.ID)}/>
-          </TableCell> :
-          null}
         {headers.filter(h => h.display).map(header => {
           switch (header.id) {
             case 'partyAbility1':
@@ -275,16 +187,6 @@ class CardsTable extends Component {
       </TableRow>
     )
   }
-
-  isChecked (id) {
-    if (this.props.selectedCardIds.find(card => card === id)) return true
-    return false
-  }
-
-  isPossession (id) {
-    if (this.props.myCards.find(card => card === id)) return true
-    return false
-  }
   
   handleChangePage (event, newPage) {
     this.setState({ page: newPage });
@@ -315,7 +217,6 @@ class CardsTable extends Component {
       bonusAbilityCondition,
       bonusAbilityActiveElementCondition,
       possessionDisplay,
-      myCards,
       headers
     } = this.props;
 
@@ -377,9 +278,6 @@ class CardsTable extends Component {
       if (bonusAbilityActiveElementCondition) {
         result = result.filter(card => card.bonusAbilityActiveElement === bonusAbilityActiveElementCondition)
       }
-      if (possessionDisplay) {
-        result = result.filter(card => myCards.includes(card.ID))
-      }
       cardsLength = result.length
       return stableSort(result, getComparator(order, orderBy))
     }
@@ -393,8 +291,6 @@ class CardsTable extends Component {
             stickyHeader>
             <TableHead>
               <TableRow>
-                {this.renderSelectCheckBox()}
-                {this.renderPossessionCheckBox()}
                 {headers.filter(h => h.display).map(headCell => (
                   <TableCell
                     key={headCell.id}

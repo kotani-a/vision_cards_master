@@ -1,5 +1,4 @@
 import React, { Component } from 'react';
-import axios from 'axios';
 import HeaderSettingDialog from './HeaderSettingDialog';
 import ConditionDialog from './ConditionDialog'
 import TextField from '@material-ui/core/TextField';
@@ -8,15 +7,11 @@ import IconButton from '@material-ui/core/IconButton';
 import Autocomplete from '@material-ui/lab/Autocomplete';
 import FormControl from '@material-ui/core/FormControl';
 import InputLabel from '@material-ui/core/InputLabel';
-import AddCircleIcon from '@material-ui/icons/AddCircle';
-import RemoveCircleIcon from '@material-ui/icons/RemoveCircle';
 import SettingsIcon from '@material-ui/icons/Settings';
 import AccountTreeIcon from '@material-ui/icons/AccountTree';
 import SearchIcon from '@material-ui/icons/Search';
 import CloseIcon from '@material-ui/icons/Close';
 import Select from '@material-ui/core/Select';
-import FormControlLabel from '@material-ui/core/FormControlLabel';
-import Switch from '@material-ui/core/Switch';
 import Drawer from '@material-ui/core/Drawer';
 import elementOptions from '../constants/elementOptions.json';
 import { withStyles } from '@material-ui/core/styles';
@@ -28,6 +23,15 @@ const CustomIconButton = withStyles(() => ({
     position: 'fixed',
     top: '5px',
     right: '8px',
+    padding: '3px'
+  },
+}))(IconButton);
+
+const CustomSettingsIconButton = withStyles(() => ({
+  root: {
+    position: 'fixed',
+    top: '5px',
+    right: '40px',
     padding: '3px'
   },
 }))(IconButton);
@@ -78,10 +82,8 @@ class Conditions extends Component {
       bonusAbilityCondition: null,
       bonusAbilityActiveElement: '',
       openDialogType: '',
-      possessionDisplay: false,
       headerSettingDialog: false,
       conditionDialog: false,
-      buttonDisabled: false
     };
     this.changeEitherCondition = this.changeEitherCondition.bind(this);
     this.changePartyAbilityCondition = this.changePartyAbilityCondition.bind(this);
@@ -126,7 +128,6 @@ class Conditions extends Component {
       setCondisionAbility,
       setCondisionBonusAbility
     } = this.props
-    // this.conditionDialogClose();
     if (!selectVal) return
     switch (openDialogType) {
       case 'either':
@@ -146,77 +147,6 @@ class Conditions extends Component {
         setCondisionBonusAbility(selectVal)
         break
       default: return
-    }
-  }
-
-  addMyCards = async () => {
-    this.setState({ buttonDisabled: true });
-
-    const {
-      clientId,
-      selectedCardIds,
-      myCards,
-      loadingStart,
-      loadingEnd
-    } = this.props;
-
-    const params = {
-      id: clientId,
-      selectedCardIds: myCards.concat(selectedCardIds)
-    };
-
-
-    if (!selectedCardIds.length || !clientId) {
-      return
-    } else {
-      loadingStart();
-    }
-
-    try {
-      await axios.post("https://8ey8makec1.execute-api.ap-northeast-1.amazonaws.com/dev", params);
-      this.props.setMyCards(selectedCardIds);
-      this.props.setSelectedCardIds([], true);
-      loadingEnd();
-      this.setState({ buttonDisabled: false });
-    } catch (error) {
-      console.log(error)
-    }
-  }
-
-  removeMyCards = async () => {
-    this.setState({ buttonDisabled: true });
-
-    const {
-      clientId,
-      selectedCardIds,
-      myCards,
-      loadingStart,
-      loadingEnd
-    } = this.props;
-
-    let removeResults = [...myCards];
-    selectedCardIds.forEach(cardId => {
-      removeResults = removeResults.filter(myCardId => myCardId !== cardId);
-    });
-    const params = {
-      id: clientId,
-      selectedCardIds: removeResults
-    };
-
-    if (!selectedCardIds.length || !clientId) {
-      return
-    } else {
-      loadingStart();
-    }
-
-    try {
-      await axios.post("https://8ey8makec1.execute-api.ap-northeast-1.amazonaws.com/dev", params);
-      this.props.setMyCards(removeResults, true);
-      this.props.setSelectedCardIds([], true);
-      loadingEnd();
-      this.setState({ buttonDisabled: false });
-    } catch (error) {
-      console.log(error)
     }
   }
 
@@ -251,10 +181,6 @@ class Conditions extends Component {
       setCondisionBonusAbility,
       setCondisionBonusAbilityActiveElement,
       abilityTypeOptoins,
-      clientId,
-      selectedCardIds,
-      changePossessionDisplay,
-      possessionDisplay,
       headers,
       drawerOpen,
       openDrawer,
@@ -269,8 +195,7 @@ class Conditions extends Component {
       elementOption,
       headerSettingDialog,
       conditionDialog,
-      openDialogType,
-      buttonDisabled
+      openDialogType
     } = this.state
     return (
       <div className={css.conditionsWrap}>
@@ -278,6 +203,10 @@ class Conditions extends Component {
           onClick={openDrawer}>
           <SearchIcon />
         </CustomIconButton>
+        <CustomSettingsIconButton
+          onClick={() => this.headerSettingDialogOpen()}>
+          <SettingsIcon />
+        </CustomSettingsIconButton>
         <CustomDrawer
           variant="persistent"
           anchor="right"
@@ -434,51 +363,23 @@ class Conditions extends Component {
             </FormControl>
           </div>
         </CustomDrawer>
-        <div className={css.conditionButtons}>
-          <FormControlLabel
-            control={<Switch
-              name="possessionDisplay"
-              disabled={!clientId}
-              checked={possessionDisplay}
-              onChange={event => changePossessionDisplay(event)}/>
-            }
-            label="所持"
-          />
-          <Button
-            disabled={!clientId || !selectedCardIds.length || buttonDisabled}
-            startIcon={<AddCircleIcon />}
-            onClick={() => this.addMyCards()}>
-            add myCards
-          </Button>
-          <Button
-            disabled={!clientId || !selectedCardIds.length || buttonDisabled}
-            startIcon={<RemoveCircleIcon />}
-            onClick={() => this.removeMyCards()}>
-            remove myCards
-          </Button>
-          <Button
-            startIcon={<SettingsIcon />}
-            onClick={() => this.headerSettingDialogOpen()}>
-            header setting
-          </Button>
-          <HeaderSettingDialog
-            headerSettingDialog={headerSettingDialog}
-            headerSettingDialogClose={this.headerSettingDialogClose}
-            headerSet={this.headerSet}
-            headers={headers}
-            >
-          </HeaderSettingDialog>
-          <ConditionDialog
-            conditionDialog={conditionDialog}
-            conditionDialogClose={this.conditionDialogClose}
-            conditionSet={this.conditionSet}
-            openDialogType={openDialogType}
-            eitherCondition={eitherCondition}
-            partyAbilityCondition={partyAbilityCondition}
-            abilityCondition={abilityCondition}
-            bonusAbilityCondition={bonusAbilityCondition}>
-          </ConditionDialog>
-        </div>
+        <HeaderSettingDialog
+          headerSettingDialog={headerSettingDialog}
+          headerSettingDialogClose={this.headerSettingDialogClose}
+          headerSet={this.headerSet}
+          headers={headers}
+          >
+        </HeaderSettingDialog>
+        <ConditionDialog
+          conditionDialog={conditionDialog}
+          conditionDialogClose={this.conditionDialogClose}
+          conditionSet={this.conditionSet}
+          openDialogType={openDialogType}
+          eitherCondition={eitherCondition}
+          partyAbilityCondition={partyAbilityCondition}
+          abilityCondition={abilityCondition}
+          bonusAbilityCondition={bonusAbilityCondition}>
+        </ConditionDialog>
       </div>
     );
   }

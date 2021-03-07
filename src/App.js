@@ -18,11 +18,6 @@ class App extends Component {
       abilityCondition: '',
       bonusAbilityCondition: '',
       bonusAbilityActiveElementCondition: '',
-      userName: '',
-      clientId: '',
-      selectedCardIds: [],
-      myCards: [],
-      possessionDisplay: false,
       loading: true,
       drawerOpen: false,
       headers: [
@@ -66,26 +61,12 @@ class App extends Component {
     this.setCondisionAbility = this.setCondisionAbility.bind(this);
     this.setCondisionBonusAbility = this.setCondisionBonusAbility.bind(this);
     this.setCondisionBonusAbilityActiveElement = this.setCondisionBonusAbilityActiveElement.bind(this);
-    this.setUserData = this.setUserData.bind(this);
-    this.setSelectedCardIds = this.setSelectedCardIds.bind(this);
-    this.setMyCards = this.setMyCards.bind(this);
-    this.changePossessionDisplay = this.changePossessionDisplay.bind(this);
     this.headerSet = this.headerSet.bind(this);
     this.loadingStart = this.loadingStart.bind(this);
     this.loadingEnd = this.loadingEnd.bind(this);
     this.openDrawer = this.openDrawer.bind(this);
     this.closeDrawer = this.closeDrawer.bind(this);
     this.CardsTable = React.createRef();
-  }
-
-  getUserCards = async (clientId) => {
-    try {
-      const result = await axios.get("https://b91beyilhg.execute-api.ap-northeast-1.amazonaws.com/dev");
-      const userCardData = result.data.filter(data => data.ID === clientId)[0];
-      this.setState({ myCards: userCardData.cards });
-    } catch(error) {
-      console.log(error);
-    }
   }
 
   craeteAbilityTypeOptoins (cards) {
@@ -182,32 +163,6 @@ class App extends Component {
     this.setState({ bonusAbilityActiveElementCondition: id || '' });
   }
 
-  changePossessionDisplay (event) {
-    this.setState({ possessionDisplay: event.target.checked })
-  }
-
-  setUserData (clientId, userName) {
-    this.setState({
-      clientId: clientId || '',
-      userName: userName || ''
-    });
-  }
-
-  setSelectedCardIds (ids, reset) {
-    this.setState({ selectedCardIds: ids || [] });
-    if (reset) {
-      this.CardsTable.current.selectReset();
-    }
-  }
-
-  setMyCards (cards, remove) {
-    if (remove) {
-      this.setState({ myCards: cards });
-    } else {
-      this.setState({ myCards: this.state.myCards.concat(cards) });
-    }
-  }
-
   headerSet (headers) {
     this.setState({ headers: headers });
   }
@@ -229,14 +184,11 @@ class App extends Component {
   }
 
   componentDidMount () {
-    // this.getUserData();
     this.getCards();
   }
 
   render () {
     const {
-      userName,
-      clientId,
       abilityTypeOptoins,
       cards,
       eitherCondition,
@@ -244,9 +196,6 @@ class App extends Component {
       abilityCondition,
       bonusAbilityCondition,
       bonusAbilityActiveElementCondition,
-      selectedCardIds,
-      myCards,
-      possessionDisplay,
       headers,
       loading,
       drawerOpen
@@ -257,12 +206,7 @@ class App extends Component {
           width: drawerOpen ? 'calc(100% - 280px)' : '100%'
         }}
         className="mainWrap">
-        <Header
-          setUserData={this.setUserData}
-          userName={userName}
-          clientId={clientId}
-          drawerOpen={drawerOpen}
-        />
+        <Header/>
         <Conditions
           abilityTypeOptoins={abilityTypeOptoins}
           setEitherCondision={this.setEitherCondision}
@@ -270,15 +214,8 @@ class App extends Component {
           setCondisionAbility={this.setCondisionAbility}
           setCondisionBonusAbility={this.setCondisionBonusAbility}
           setCondisionBonusAbilityActiveElement={this.setCondisionBonusAbilityActiveElement}
-          clientId={clientId}
-          selectedCardIds={selectedCardIds}
-          setSelectedCardIds={this.setSelectedCardIds}
-          myCards={myCards}
-          setMyCards={this.setMyCards}
-          changePossessionDisplay={this.changePossessionDisplay}
           headers={headers}
           headerSet={this.headerSet}
-          possessionDisplay={possessionDisplay}
           loadingStart={this.loadingStart}
           loadingEnd={this.loadingEnd}
           drawerOpen={drawerOpen}
@@ -293,11 +230,6 @@ class App extends Component {
           abilityCondition={abilityCondition}
           bonusAbilityCondition={bonusAbilityCondition}
           bonusAbilityActiveElementCondition={bonusAbilityActiveElementCondition}
-          clientId={clientId}
-          selectedCardIds={selectedCardIds}
-          setSelectedCardIds={this.setSelectedCardIds}
-          myCards={myCards}
-          possessionDisplay={possessionDisplay}
           headers={headers}
           drawerOpen={drawerOpen}
         />

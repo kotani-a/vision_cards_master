@@ -41,7 +41,6 @@ class HeaderSettingDialog extends Component {
         { id: 'bonusAbility', label: 'ボーナスアビリティ', display: true },
         { id: 'bonusAbilityActiveElement', label: 'ボーナスアビリティ発動属性', display: true },
         { id: 'visionAbility', label: 'ビジョンアビリティ', display: false },
-        { id: 'visionAbilityConditions', label: 'ビジョンアビリティ発動条件', display: false },
         { id: 'hp', label: 'HP', display: true },
         { id: 'maxHp', label: 'maxHP', display: false },
         { id: 'tp', label: 'TP', display: false },

@@ -10,7 +10,10 @@ class Header extends Component {
 
   render () {
     return (
-      <div className={css.clearfix}>
+      <div
+        id="header-wrap"
+        className={css.clearfix}
+      >
         <h1 className={css.header}>
           <img
             src={vcmImage}

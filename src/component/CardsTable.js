@@ -16,6 +16,11 @@ const CustomTablePagination = withStyles(() => ({
   root: {
     '& .MuiTablePagination-spacer': {
       display: 'none'
+    },
+    '& .MuiTablePagination-actions': {
+      '& button': {
+        padding: '4px'
+      }
     }
   },
 }))(TablePagination);
@@ -45,8 +50,13 @@ class CardsTable extends Component {
     });
   }
 
+  componentWillUnmount() {
+    window.removeEventListener('resize', this.setTableHeight);
+  }
+
   setTableHeight () {
-    const haederHeight = 119
+    const haederHeight = document.getElementById("header-wrap").clientHeight
+    console.log(haederHeight)
     const tableFooterHeight = 52
     let tableHeight = window.innerHeight - haederHeight - tableFooterHeight
     this.setState({ tableHeight: tableHeight });
@@ -156,6 +166,19 @@ class CardsTable extends Component {
                     key={`${card.ID}-${header.id}`}
                     id={`${card.ID}-${header.id}`}
                     title={`条件:${card.ability4Conditions}`}
+                    cell={`${card[header.id]}*`}
+                  />
+                )
+              } else {
+                return <TableCell key={`${card.ID}-${header.id}`}>{ card[header.id] }</TableCell>
+              }
+            case 'visionAbility':
+              if (card.visionAbilityConditions) {
+                return (
+                  <TableTooltipCell
+                    key={`${card.ID}-${header.id}`}
+                    id={`${card.ID}-${header.id}`}
+                    title={`条件:${card.visionAbilityConditions}`}
                     cell={`${card[header.id]}*`}
                   />
                 )
@@ -310,6 +333,7 @@ class CardsTable extends Component {
           page={page}
           count={cardsLength}
           component="div"
+          labelRowsPerPage="表示件数:"
           onChangePage={this.handleChangePage}
           onChangeRowsPerPage={this.handleChangeRowsPerPage}
         />

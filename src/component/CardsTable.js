@@ -11,6 +11,7 @@ import Checkbox from '@material-ui/core/Checkbox';
 import Tooltip from '@material-ui/core/Tooltip';
 import { withStyles } from '@material-ui/core/styles';
 import elementOptions from '../constants/elementOptions.json';
+import TableTooltipCell from './TableTooltipCell.js'
 
 const CustomTablePagination = withStyles(() => ({
   root: {
@@ -87,14 +88,12 @@ class CardsTable extends Component {
             case 'partyAbility1':
               if (card.partyAbility1Conditions) {
                 return (
-                  <Tooltip
+                  <TableTooltipCell
                     key={`${card.ID}-${header.id}`}
+                    id={`${card.ID}-${header.id}`}
                     title={`条件:${card.partyAbility1Conditions}`}
-                    placement="right"
-                    arrow
-                    disableFocusListener>
-                    <TableCell>{ `${card[header.id]}*` }</TableCell>
-                  </Tooltip>
+                    cell={`${card[header.id]}*`}
+                  />
                   )
               } else {
                 return <TableCell key={`${card.ID}-${header.id}`}>{ card[header.id] }</TableCell>

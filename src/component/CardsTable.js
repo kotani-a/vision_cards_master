@@ -91,7 +91,8 @@ class CardsTable extends Component {
                     key={`${card.ID}-${header.id}`}
                     title={`条件:${card.partyAbility1Conditions}`}
                     placement="right"
-                    arrow>
+                    arrow
+                    disableFocusListener>
                     <TableCell>{ `${card[header.id]}*` }</TableCell>
                   </Tooltip>
                   )
@@ -105,7 +106,8 @@ class CardsTable extends Component {
                     key={`${card.ID}-${header.id}`}
                     title={`条件:${card.partyAbility2Conditions}`}
                     placement="right"
-                    arrow>
+                    arrow
+                    disableFocusListener>
                     <TableCell>{ `${card[header.id]}*` }</TableCell>
                   </Tooltip>
                 )
@@ -119,7 +121,8 @@ class CardsTable extends Component {
                     key={`${card.ID}-${header.id}`}
                     title={`条件:${card.ability1Conditions}`}
                     placement="right"
-                    arrow>
+                    arrow
+                    disableFocusListener>
                     <TableCell>{ `${card[header.id]}*` }</TableCell>
                   </Tooltip>
                 )
@@ -133,7 +136,8 @@ class CardsTable extends Component {
                     key={`${card.ID}-${header.id}`}
                     title={`条件:${card.ability2Conditions}`}
                     placement="right"
-                    arrow>
+                    arrow
+                    disableFocusListener>
                     <TableCell>{ `${card[header.id]}*` }</TableCell>
                   </Tooltip>
                 )
@@ -147,7 +151,8 @@ class CardsTable extends Component {
                     key={`${card.ID}-${header.id}`}
                     title={`条件:${card.ability3Conditions}`}
                     placement="right"
-                    arrow>
+                    arrow
+                    disableFocusListener>
                     <TableCell>{ `${card[header.id]}*` }</TableCell>
                   </Tooltip>
                 )
@@ -161,7 +166,8 @@ class CardsTable extends Component {
                     key={`${card.ID}-${header.id}`}
                     title={`条件:${card.ability3Conditions}`}
                     placement="right"
-                    arrow>
+                    arrow
+                    disableFocusListener>
                     <TableCell>{ `${card[header.id]}*` }</TableCell>
                   </Tooltip>
                 )
@@ -216,7 +222,6 @@ class CardsTable extends Component {
       abilityCondition,
       bonusAbilityCondition,
       bonusAbilityActiveElementCondition,
-      possessionDisplay,
       headers
     } = this.props;
 

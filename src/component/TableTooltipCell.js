@@ -1,6 +1,13 @@
 import React, { Component } from 'react';
 import TableCell from '@material-ui/core/TableCell';
 import Tooltip from '@material-ui/core/Tooltip';
+import { withStyles } from '@material-ui/core/styles';
+
+const CustomTableCell = withStyles(() => ({
+  root: {
+    userSelect: 'none'
+  },
+}))(TableCell);
 
 class TableTooltipCell extends Component {
   constructor (props) {
@@ -10,13 +17,33 @@ class TableTooltipCell extends Component {
     }
   }
 
+  componentDidMount() {
+    window.addEventListener('touchstart', e => {
+      this.tooltipDisplayJudge(e)
+    });
+  }
+
+  tooltipDisplayJudge (e) {
+    const { id } = this.props
+    const { open } = this.state
+    if (e.target.id === id) {
+      this.setState({
+        open: !open
+      });
+    } else {
+      this.setState({
+        open: false
+      });
+    }
+  }
+
   tooltipOpen () {
     this.setState({
       open: true
     });
   }
 
-  tooltipClose = () => {
+  tooltipClose () {
     this.setState({
       open: false
     });
@@ -37,14 +64,12 @@ class TableTooltipCell extends Component {
         open={open}
         arrow
         disableFocusListener>
-        <TableCell
+        <CustomTableCell
+          id={id}
           onMouseEnter={() => this.tooltipOpen()}
-          onMouseLeave={() => this.tooltipClose()}
-          onTouchStart={() => this.tooltipOpen()}
-          onTouchEnd={() => this.tooltipClose()}
-        >
+          onMouseLeave={() => this.tooltipClose()}>
           {cell}
-        </TableCell>
+        </CustomTableCell>
       </Tooltip>
     )
   }

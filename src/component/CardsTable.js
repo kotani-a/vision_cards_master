@@ -25,6 +25,8 @@ const CustomTablePagination = withStyles(() => ({
   },
 }))(TablePagination);
 
+let tableHeight = 600
+
 class CardsTable extends Component {
   constructor (props) {
     super(props);
@@ -33,8 +35,7 @@ class CardsTable extends Component {
       orderBy: 'rarity',
       selectedCardIds: [],
       rowsPerPage: 25,
-      page: 0,
-      tableHeight: 600
+      page: 0
     };
     this.handleChangePage = this.handleChangePage.bind(this);
     this.handleChangeRowsPerPage = this.handleChangeRowsPerPage.bind(this);
@@ -50,16 +51,18 @@ class CardsTable extends Component {
     });
   }
 
+  componentDidUpdate () {
+    this.setTableHeight();
+  }
+
   componentWillUnmount() {
     window.removeEventListener('resize', this.setTableHeight);
   }
 
   setTableHeight () {
     const haederHeight = document.getElementById("header-wrap").clientHeight
-    console.log(haederHeight)
     const tableFooterHeight = 52
-    let tableHeight = window.innerHeight - haederHeight - tableFooterHeight
-    this.setState({ tableHeight: tableHeight });
+    tableHeight = window.innerHeight - haederHeight - tableFooterHeight
   }
 
   handleRequestSort (property) {
@@ -223,8 +226,7 @@ class CardsTable extends Component {
       orderBy,
       order,
       rowsPerPage,
-      page,
-      tableHeight
+      page
     } = this.state;
     const {
       cards,

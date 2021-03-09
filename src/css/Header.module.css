@@ -9,7 +9,7 @@
 }
 
 .headerImage {
-  max-width: 100%;
+  max-width: calc(100% - 76px);
   float: left;
   padding: 8px;
 }

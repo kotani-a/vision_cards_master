@@ -12,6 +12,38 @@ import { withStyles } from '@material-ui/core/styles';
 import elementOptions from '../constants/elementOptions.json';
 import TableTooltipCell from './TableTooltipCell.js'
 
+const CustomTableHead = withStyles(() => ({
+  root: {
+    '& .MuiTableCell-head': {
+      backgroundColor: '#1b1515',
+      color: '#fcfcfc',
+      fontWeight: 'bold',
+      '& .MuiTableSortLabel-root': {
+        '&:hover': {
+          color: '#f50057',
+          '& .MuiSvgIcon-root.MuiTableSortLabel-icon': {
+            opacity: '1'
+          }
+        }
+      },
+      '& .MuiTableSortLabel-active': {
+        color: '#f50057',
+        '& .MuiSvgIcon-root.MuiTableSortLabel-icon': {
+          color: '#f50057'
+        }
+      },
+    }
+  },
+}))(TableHead);
+
+const CustomTableBody = withStyles(() => ({
+  root: {
+    '& .MuiTableCell-body': {
+      borderBottom: '1px solid #1b1515'
+    }
+  },
+}))(TableBody);
+
 const CustomTablePagination = withStyles(() => ({
   root: {
     '& .MuiTablePagination-spacer': {
@@ -310,7 +342,7 @@ class CardsTable extends Component {
             size="small"
             dense="true"
             stickyHeader>
-            <TableHead>
+            <CustomTableHead>
               <TableRow>
                 {headers.filter(h => h.display).map(headCell => (
                   <TableCell
@@ -326,10 +358,10 @@ class CardsTable extends Component {
                   </TableCell>
                 ))}
               </TableRow>
-            </TableHead>
-            <TableBody>
+            </CustomTableHead>
+            <CustomTableBody>
               {filterSort().slice(page * rowsPerPage, page * rowsPerPage + rowsPerPage).map(card => this.tableBodyCell(card))}
-            </TableBody>
+            </CustomTableBody>
           </Table>
         </TableContainer>
         <CustomTablePagination

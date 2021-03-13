@@ -9,6 +9,16 @@ const CustomTableCell = withStyles(() => ({
   },
 }))(TableCell);
 
+const CustomTooltip = withStyles(() => ({
+  tooltip: {
+    backgroundColor: '#1b1515',
+    color: '#fcfcfc',
+  },
+  arrow: {
+    color: '#1b1515'
+  }
+}))(Tooltip);
+
 class TableTooltipCell extends Component {
   constructor (props) {
     super(props)
@@ -57,7 +67,7 @@ class TableTooltipCell extends Component {
     } = this.props
     const { open } = this.state
     return (
-      <Tooltip
+      <CustomTooltip
         key={id}
         title={title}
         placement="right"
@@ -70,7 +80,7 @@ class TableTooltipCell extends Component {
           onMouseLeave={() => this.tooltipClose()}>
           {cell}
         </CustomTableCell>
-      </Tooltip>
+      </CustomTooltip>
     )
   }
 }

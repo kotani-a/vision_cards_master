@@ -1,5 +1,4 @@
 .draggableItemGroup {
   max-height: 100%;
-  margin-bottom: 8px;
   overflow-y: auto;
 }

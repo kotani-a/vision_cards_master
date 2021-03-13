@@ -40,8 +40,9 @@ const CustomDrawer = withStyles(() => ({
   root: {
     width: '280px',
     '& .MuiDrawer-paper': {
-      padding: '8px',
-      boxSizing: 'border-box'
+      padding: '40px 8px 8px 8px',
+      boxSizing: 'border-box',
+      borderLeft: '1px solid #1b1515'
     }
   },
 }))(Drawer);
@@ -62,7 +63,8 @@ const CustomTextField = withStyles(() => ({
 
 const CustomSelect = withStyles(() => ({
   root: {
-    padding: '15.5px 14px',
+    width: '210px',
+    padding: '15.5px 14px'
   },
 }))(Select);
 
@@ -71,6 +73,18 @@ const CustomAccountTreeButton = withStyles(() => ({
     minWidth: '48px'
   },
 }))(Button);
+
+const CustomFormControl = withStyles(() => ({
+  root: {
+    width: '100%',
+    '& .MuiInputBase-root': {
+      borderRadius: '0',
+      '& .MuiOutlinedInput-notchedOutline': {
+        borderColor: '#1b1515'
+      }
+    }
+  },
+}))(FormControl);
 
 class Conditions extends Component {
   constructor (props) {
@@ -201,11 +215,11 @@ class Conditions extends Component {
       <div className={css.conditionsWrap}>
         <CustomIconButton
           onClick={openDrawer}>
-          <SearchIcon />
+          <SearchIcon style={{ color: '#1b1515' }}/>
         </CustomIconButton>
         <CustomSettingsIconButton
           onClick={() => this.headerSettingDialogOpen()}>
-          <SettingsIcon />
+          <SettingsIcon style={{ color: '#1b1515' }}/>
         </CustomSettingsIconButton>
         <CustomDrawer
           variant="persistent"
@@ -214,10 +228,10 @@ class Conditions extends Component {
           >
           <CustomIconButton
             onClick={closeDrawer}>
-            <CloseIcon />
+            <CloseIcon style={{ color: '#1b1515' }}/>
           </CustomIconButton>
           <h2 className={css.conditionHeader}>条件</h2>
-          <div className={css.conditionBoxWrap}>
+          <div className={css.firstConditionBoxWrap}>
             <form
               noValidate
               autoComplete="off"
@@ -335,20 +349,24 @@ class Conditions extends Component {
               startIcon={<AccountTreeIcon />}/>
           </div>
           <div className={css.elementBoxWrap}>
-            <FormControl
+            <CustomFormControl
               variant="outlined"
               autoComplete="off"
               onBlur={() => setCondisionBonusAbilityActiveElement(bonusAbilityActiveElement)}
               onSubmit={event => this.handleSubmit(event)}>
-              <InputLabel htmlFor="elementOption-select">ボーナスアビリティ発動属性</InputLabel>
+              <InputLabel
+                htmlFor="elementOption-select"
+                color="secondary">
+                ボーナスアビリティ発動属性
+              </InputLabel>
               <CustomSelect
                 native
                 value={elementOption}
-                style={{ width: 210 }}
                 onChange={event => this.changebonusAbilityActiveElementCondition(event)}
-                label="Age"
+                label="ボーナスアビリティ発動属性"
+                color="secondary"
                 inputProps={{
-                  name: 'age',
+                  name: 'element',
                   id: 'elementOption-select',
                 }}>
                 {elementOptions.map(option => {
@@ -360,7 +378,7 @@ class Conditions extends Component {
                     </option>);
                 })}
               </CustomSelect>
-            </FormControl>
+            </CustomFormControl>
           </div>
         </CustomDrawer>
         <HeaderSettingDialog

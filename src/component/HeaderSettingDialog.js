@@ -12,16 +12,18 @@ const CustomDialog = withStyles(() => ({
     '& .MuiDialog-paper': {
       width: '50%',
       height: '50%',
-      padding: '8px',
-      overflowY: 'hidden'
+      overflowY: 'hidden',
+      borderRadius: '0'
     }
   },
 }))(Dialog);
 
 const CustomButton = withStyles(() => ({
   root: {
-    alignSelf: 'center',
-    marginTop: 'auto'
+    alignSelf: 'flex-end',
+    margin: '8px',
+    border: '1px solid #1b1515',
+    borderRadius: '0'
   },
 }))(Button);
 

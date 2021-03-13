@@ -16,8 +16,8 @@ const CustomDialog = withStyles(() => ({
     '& .MuiDialog-paper': {
       width: '50%',
       height: '50%',
-      padding: '8px',
-      overflowY: 'hidden'
+      overflowY: 'hidden',
+      borderRadius: '0'
     }
   },
 }))(Dialog);
@@ -25,15 +25,20 @@ const CustomDialog = withStyles(() => ({
 
 const CustomTreeView = withStyles(() => ({
   root: {
-    margin: '8px 0',
-    overflowY: 'auto'
+    margin: '8px 0 8px 8px',
+    overflowY: 'auto',
+    '& .MuiTreeItem-root.Mui-selected .MuiTreeItem-content .MuiTreeItem-label': {
+      backgroundColor: 'transparent'
+    }
   },
 }))(TreeView);
 
 const CustomButton = withStyles(() => ({
   root: {
-    alignSelf: 'center',
-    marginTop: 'auto'
+    alignSelf: 'flex-end',
+    margin: 'auto 8px 8px 8px',
+    border: '1px solid #1b1515',
+    borderRadius: '0'
   },
 }))(Button);
 

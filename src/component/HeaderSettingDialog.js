@@ -10,8 +10,8 @@ import css from '../css/HeaderSettingDialog.module.css'
 const CustomDialog = withStyles(() => ({
   root: {
     '& .MuiDialog-paper': {
-      width: '50%',
-      height: '50%',
+      width: '80%',
+      height: '80%',
       overflowY: 'hidden',
       borderRadius: '0'
     }

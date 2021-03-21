@@ -38,6 +38,7 @@ const CustomTableHead = withStyles(() => ({
 
 const CustomTableBody = withStyles(() => ({
   root: {
+    backgroundImage: 'linear-gradient(315deg, rgba(245, 0, 87, 0.3) 0%, rgba(235, 183, 54, 0.3) 100%)',
     '& .MuiTableCell-body': {
       borderBottom: '1px solid #1b1515'
     }

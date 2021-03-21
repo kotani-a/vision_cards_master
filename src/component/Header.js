@@ -1,6 +1,6 @@
 import React, { Component } from 'react';
 import css from '../css/Header.module.css';
-import vcmImage from "../images/vcm5.png" 
+import vcmImage from "../images/vcm.png" 
 
 class Header extends Component {
   constructor (props) {

@@ -1,5 +1,6 @@
 import React, { Component } from 'react';
-import CircularProgress from '@material-ui/core/CircularProgress';
+import cardGradationAnimation from "../images/card-gradation-animation.gif";
+import css from '../css/Progress.module.css'
 
 class Progress extends Component {
   constructor (props) {
@@ -10,26 +11,14 @@ class Progress extends Component {
   render () {
     const { loading } = this.props
     return (
-      <div
-        style={{
-          width: "100%",
-          height: "100%",
-          position: "fixed",
-          top: "0",
-          left: "0",
-          zIndex: "1000",
-          backgroundColor: "rgba(0,0,0,0.5)",
-          display: loading ? "initial" : "none"
-        }}>
-        {loading ?
-          <CircularProgress
-            color="secondary"
-            style={{position: "fixed", top: "50%", left: "50%"}}
-          />:
-          null
-        }
+      <div className={loading ? `${css.loadingWrap}` : ` ${css.noDisplay}`}>     
+        <h2 className={css.headerText}>Now Loading ...</h2>
+        <img
+          src={cardGradationAnimation}
+          className={css.cardImage}
+          alt="card gradation animation"/>
       </div>
-    );
+    )
   }
 }
 

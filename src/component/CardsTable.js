@@ -11,6 +11,7 @@ import Checkbox from '@material-ui/core/Checkbox';
 import { withStyles } from '@material-ui/core/styles';
 import elementOptions from '../constants/elementOptions.json';
 import TableTooltipCell from './TableTooltipCell.js'
+import CardDialog from './CardDialog.js'
 
 const CustomTableHead = withStyles(() => ({
   root: {
@@ -58,6 +59,16 @@ const CustomTablePagination = withStyles(() => ({
   },
 }))(TablePagination);
 
+
+const CustomNameTableCell = withStyles(() => ({
+  root: {
+    color: 'rgba(200, 0, 0, 1)',
+    '&:hover': {
+      textDecoration: 'underline'
+    }
+  }
+}))(TableCell);
+
 class CardsTable extends Component {
   constructor (props) {
     super(props);
@@ -67,13 +78,16 @@ class CardsTable extends Component {
       selectedCardIds: [],
       rowsPerPage: 25,
       page: 0,
-      tableHeight: 600
+      tableHeight: 600,
+      cardDialog: false,
+      card: {}
     };
     this.handleChangePage = this.handleChangePage.bind(this);
     this.handleChangeRowsPerPage = this.handleChangeRowsPerPage.bind(this);
     this.setCardsLength = this.setCardsLength.bind(this);
     this.makeRarityLabel = this.makeRarityLabel.bind(this);
     this.makeElementLabel = this.makeElementLabel.bind(this);
+    this.cardDialogClose = this.cardDialogClose.bind(this);
   }
 
   componentDidMount() {
@@ -126,12 +140,28 @@ class CardsTable extends Component {
     }
   }
 
+  cardOpen (card) {
+    this.setState({
+      cardDialog: true,
+      card
+    })
+  }
+
   tableBodyCell (card) {
     const { headers } = this.props;
     return (
       <TableRow key={card.ID}>
         {headers.filter(h => h.display).map(header => {
           switch (header.id) {
+            case 'name':
+            return (
+              <CustomNameTableCell
+                key={`${card.ID}-${header.id}`}
+                onClick={() => this.cardOpen(card)}
+              >
+                { card[header.id] }
+              </CustomNameTableCell>
+            )
             case 'partyAbility1':
               if (card.partyAbility1Conditions) {
                 return (
@@ -256,13 +286,19 @@ class CardsTable extends Component {
     this.setState({ cardsLength });
   }
 
+  cardDialogClose () {
+    this.setState({ cardDialog: false });
+  }
+
   render () {
     const {
       orderBy,
       order,
       rowsPerPage,
       page,
-      tableHeight
+      tableHeight,
+      cardDialog,
+      card
     } = this.state;
     const {
       cards,
@@ -374,6 +410,11 @@ class CardsTable extends Component {
           labelRowsPerPage="表示件数:"
           onChangePage={this.handleChangePage}
           onChangeRowsPerPage={this.handleChangeRowsPerPage}
+        />
+        <CardDialog
+          card={card}
+          cardDialog={cardDialog}
+          cardDialogClose={this.cardDialogClose}
         />
       </div>
     );

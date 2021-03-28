@@ -1,11 +1,47 @@
 [
-  { "element": "none", "label": "指定なし" },
-  { "element": "fire", "label": "火属性" },
-  { "element": "ice", "label": "氷属性" },
-  { "element": "wind", "label": "風属性" },
-  { "element": "soil", "label": "土属性" },
-  { "element": "thunder", "label": "雷属性" },
-  { "element": "water", "label": "水属性" },
-  { "element": "dark", "label": "闇属性" },
-  { "element": "light", "label": "光属性" }
+  {
+    "element": "none",
+    "label": "指定なし",
+    "color": "#222222"
+  },
+  {
+    "element": "fire",
+    "label": "火属性",
+    "color": "#ef674d"
+  },
+  {
+    "element": "ice",
+    "label": "氷属性",
+    "color": "#a9b6fc"
+  },
+  {
+    "element": "wind",
+    "label": "風属性",
+    "color": "#a2ea4a"
+  },
+  {
+    "element": "soil",
+    "label": "土属性",
+    "color": "#f5df8c"
+  },
+  {
+    "element": "thunder",
+    "label": "雷属性",
+    "color": "#fdf85c"
+  },
+  {
+    "element": "water",
+    "label": "水属性",
+    "color": "#94fff9"
+  },
+  {
+    "element": "dark",
+    "label": "闇属性",
+    "color": "#f086ea"
+  },
+  {
+    "element": "light",
+    "label": "光属性",
+    "color": "#e0e0e0"
+  }
 ]

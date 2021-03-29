@@ -74,14 +74,15 @@
 }
 
 .cost {
+  font-family: 'Aguafina Script', cursive;
   position: absolute;
   top: 8px;
   left: 8px;
+  font-size: 18px;
 }
 
 .costValue {
-  font-family: 'Aguafina Script', cursive;
-  font-size: 24px;
+  font-size: 32px;
 }
 
 .headerDecoration1 {

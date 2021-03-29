@@ -122,6 +122,7 @@
 
 .paragraph {
   margin: 4px 0;
+  font-size: 16px;
 }
 
 .keyText {
@@ -161,6 +162,14 @@
   .gradationBord {
     width: 320px;
     height: 518px;
+  }
+
+  .headerText {
+    font-size: 20px;
+  }
+
+  .paragraph {
+    font-size: 12px;
   }
 
   .statusTable th,

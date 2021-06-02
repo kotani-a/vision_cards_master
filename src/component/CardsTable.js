@@ -75,7 +75,6 @@ class CardsTable extends Component {
     this.state = {
       order: 'desc',
       orderBy: 'rarity',
-      selectedCardIds: [],
       rowsPerPage: 25,
       page: 0,
       tableHeight: 600,
@@ -84,10 +83,11 @@ class CardsTable extends Component {
     };
     this.handleChangePage = this.handleChangePage.bind(this);
     this.handleChangeRowsPerPage = this.handleChangeRowsPerPage.bind(this);
-    this.setCardsLength = this.setCardsLength.bind(this);
     this.makeRarityLabel = this.makeRarityLabel.bind(this);
     this.makeElementLabel = this.makeElementLabel.bind(this);
     this.cardDialogClose = this.cardDialogClose.bind(this);
+    this.moveBeforeCard = this.moveBeforeCard.bind(this);
+    this.moveNextCard = this.moveNextCard.bind(this);
   }
 
   componentDidMount() {
@@ -282,12 +282,30 @@ class CardsTable extends Component {
     this.setState({ page: 0 });
   };
 
-  setCardsLength (cardsLength) {
-    this.setState({ cardsLength });
-  }
-
   cardDialogClose () {
     this.setState({ cardDialog: false });
+  }
+
+  moveBeforeCard (list) {
+    const {
+      card
+    } = this.state
+    const cardIndex = list.findIndex(filteredCard => filteredCard.ID === card.ID)
+    const beforeCard = list[cardIndex - 1]
+    this.setState({
+      card: beforeCard
+    });
+  }
+
+  moveNextCard (list) {
+    const {
+      card
+    } = this.state
+    const cardIndex = list.findIndex(filteredCard => filteredCard.ID === card.ID)
+    const nextCard = list[cardIndex + 1]
+    this.setState({
+      card: nextCard
+    });
   }
 
   render () {
@@ -310,6 +328,7 @@ class CardsTable extends Component {
       headers
     } = this.props;
 
+    let filterSortList = [];
     let cardsLength = 0;
 
     function stableSort (array, comparator) {
@@ -338,39 +357,37 @@ class CardsTable extends Component {
         : (a, b) => -descendingComparator(a, b, orderBy);
     }
 
-    function filterSort () {
-      let result = cards;
-      if (eitherCondition) {
-        result = result.filter(card =>
-          card.partyAbility1Type === eitherCondition ||
-          card.partyAbility2Type === eitherCondition ||
-          card.ability1Type === eitherCondition ||
-          card.ability2Type === eitherCondition ||
-          card.ability3Type === eitherCondition ||
-          card.ability4Type === eitherCondition ||
-          card.bonusAbilityType === eitherCondition)
-      }
-      if (partyAbilityCondition) {
-        result = result.filter(card =>
-          card.partyAbility1Type === partyAbilityCondition ||
-          card.partyAbility2Type === partyAbilityCondition)
-      }
-      if (abilityCondition) {
-        result = result.filter(card =>
-          card.ability1Type === abilityCondition ||
-          card.ability2Type === abilityCondition ||
-          card.ability3Type === abilityCondition ||
-          card.ability4Type === abilityCondition)
-      }
-      if (bonusAbilityCondition) {
-        result = result.filter(card => card.bonusAbilityType === bonusAbilityCondition)
-      }
-      if (bonusAbilityActiveElementCondition) {
-        result = result.filter(card => card.bonusAbilityActiveElement === bonusAbilityActiveElementCondition)
-      }
-      cardsLength = result.length
-      return stableSort(result, getComparator(order, orderBy))
+    let result = cards;
+    if (eitherCondition) {
+      result = result.filter(card =>
+        card.partyAbility1Type === eitherCondition ||
+        card.partyAbility2Type === eitherCondition ||
+        card.ability1Type === eitherCondition ||
+        card.ability2Type === eitherCondition ||
+        card.ability3Type === eitherCondition ||
+        card.ability4Type === eitherCondition ||
+        card.bonusAbilityType === eitherCondition)
     }
+    if (partyAbilityCondition) {
+      result = result.filter(card =>
+        card.partyAbility1Type === partyAbilityCondition ||
+        card.partyAbility2Type === partyAbilityCondition)
+    }
+    if (abilityCondition) {
+      result = result.filter(card =>
+        card.ability1Type === abilityCondition ||
+        card.ability2Type === abilityCondition ||
+        card.ability3Type === abilityCondition ||
+        card.ability4Type === abilityCondition)
+    }
+    if (bonusAbilityCondition) {
+      result = result.filter(card => card.bonusAbilityType === bonusAbilityCondition)
+    }
+    if (bonusAbilityActiveElementCondition) {
+      result = result.filter(card => card.bonusAbilityActiveElement === bonusAbilityActiveElementCondition)
+    }
+    cardsLength = result.length
+    filterSortList = stableSort(result, getComparator(order, orderBy))
 
     return (
       <div>
@@ -397,7 +414,7 @@ class CardsTable extends Component {
               </TableRow>
             </CustomTableHead>
             <CustomTableBody>
-              {filterSort().slice(page * rowsPerPage, page * rowsPerPage + rowsPerPage).map(card => this.tableBodyCell(card))}
+              {filterSortList.slice(page * rowsPerPage, page * rowsPerPage + rowsPerPage).map(card => this.tableBodyCell(card))}
             </CustomTableBody>
           </Table>
         </TableContainer>
@@ -415,6 +432,9 @@ class CardsTable extends Component {
           card={card}
           cardDialog={cardDialog}
           cardDialogClose={this.cardDialogClose}
+          filterSortList={filterSortList}
+          moveBeforeCard={this.moveBeforeCard}
+          moveNextCard={this.moveNextCard}
         />
       </div>
     );

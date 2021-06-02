@@ -2,46 +2,55 @@
   {
     "element": "none",
     "label": "指定なし",
-    "color": "#222222"
+    "color": "#222222",
+    "backgroundColor": "#bdbdbd"
   },
   {
     "element": "fire",
     "label": "火属性",
-    "color": "#ef674d"
+    "color": "#d93e3b",
+    "backgroundColor": "#f05435"
   },
   {
     "element": "ice",
     "label": "氷属性",
-    "color": "#a9b6fc"
+    "color": "#6c78bd",
+    "backgroundColor": "#9ddffe"
   },
   {
     "element": "wind",
     "label": "風属性",
-    "color": "#a2ea4a"
+    "color": "#a2ea4a",
+    "backgroundColor": "#42f658"
   },
   {
     "element": "soil",
     "label": "土属性",
-    "color": "#f5df8c"
+    "color": "#debc73",
+    "backgroundColor": "#f5df8c"
   },
   {
     "element": "thunder",
     "label": "雷属性",
-    "color": "#fdf85c"
+    "color": "#e6d047",
+    "backgroundColor": "#fdf85c"
   },
   {
     "element": "water",
     "label": "水属性",
-    "color": "#94fff9"
+    "color": "#87c5ff",
+    "backgroundColor": "#94fff9"
   },
   {
     "element": "dark",
     "label": "闇属性",
-    "color": "#f086ea"
+    "color": "#703f6e",
+    "backgroundColor": "#bf6fd9"
   },
   {
     "element": "light",
     "label": "光属性",
-    "color": "#e0e0e0"
+    "color": "#eeeeee",
+    "backgroundColor": "#f0f0f0"
   }
 ]

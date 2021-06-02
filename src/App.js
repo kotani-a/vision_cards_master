@@ -201,7 +201,8 @@ class App extends Component {
     return (
       <div
         style={{
-          width: drawerOpen ? 'calc(100% - 280px)' : '100%'
+          width: drawerOpen ? 'calc(100% - 280px)' : '100%',
+          minWidth: '300px'
         }}
         className="mainWrap">
         <Header/>

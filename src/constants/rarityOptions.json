@@ -1,0 +1,22 @@
+[
+  {
+    "rarity": "UR",
+    "id": 5
+  },
+  {
+    "rarity": "SSR",
+    "id": 4
+  },
+  {
+    "rarity": "SR",
+    "id": 3
+  },
+  {
+    "rarity": "R",
+    "id": 2
+  },
+  {
+    "rarity": "N",
+    "id": 1
+  }
+]

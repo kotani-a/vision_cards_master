@@ -1,0 +1,14 @@
+.conditionBoxWrap {
+  display: flex;
+  border: solid 1px #1b1515;
+}
+
+.formBox {
+  width: 100%;
+}
+
+.divider {
+  width: 1px;
+  background-color: #1b1515;
+  border: none;
+}

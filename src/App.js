@@ -3,7 +3,7 @@ import './App.css';
 import axios from 'axios';
 
 import CardsTable from './component/CardsTable.js'
-import Conditions from './component/Conditions.js'
+import HeaderButtons from './component/HeaderButtons.js'
 import Header from './component/Header.js'
 import Progress from './component/Progress.js'
 
@@ -22,6 +22,7 @@ class App extends Component {
       drawerOpen: false,
       headers: [
         { id: 'rarity', label: 'レアリティ', display: true },
+        { id: 'cost', label: 'コスト', display: true },
         { id: 'name', label: '名前', display: true },
         { id: 'partyAbility1', label: 'パーティーアビリティ1', display: true },
         { id: 'partyAbility2', label: 'パーティーアビリティ2', display: false },
@@ -65,6 +66,7 @@ class App extends Component {
     this.loadingEnd = this.loadingEnd.bind(this);
     this.openDrawer = this.openDrawer.bind(this);
     this.closeDrawer = this.closeDrawer.bind(this);
+    this.getCards = this.getCards.bind(this);
   }
 
   craeteAbilityTypeOptoins (cards) {
@@ -206,7 +208,7 @@ class App extends Component {
         }}
         className="mainWrap">
         <Header/>
-        <Conditions
+        <HeaderButtons
           abilityTypeOptoins={abilityTypeOptoins}
           setEitherCondision={this.setEitherCondision}
           setCondisionPartyAbility={this.setCondisionPartyAbility}
@@ -220,6 +222,8 @@ class App extends Component {
           drawerOpen={drawerOpen}
           openDrawer={this.openDrawer}
           closeDrawer={this.closeDrawer}
+          cardsLength={cards.length}
+          getCards={this.getCards}
         />
         <CardsTable
           cards={cards}

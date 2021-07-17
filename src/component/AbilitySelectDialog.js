@@ -8,7 +8,7 @@ import CheckIcon from '@material-ui/icons/Check';
 import TreeItem from '@material-ui/lab/TreeItem';
 import abilityOptions from '../constants/abilityOptions.json';
 import { withStyles } from '@material-ui/core/styles';
-import css from '../css/ConditionDialog.module.css'
+import css from '../css/AbilitySelectDialog.module.css'
 
 
 const CustomDialog = withStyles(() => ({
@@ -42,7 +42,7 @@ const CustomButton = withStyles(() => ({
   },
 }))(Button);
 
-class ConditionDialog extends Component {
+class AbilitySelectDialog extends Component {
   constructor (props) {
     super(props);
     this.state = {
@@ -51,12 +51,12 @@ class ConditionDialog extends Component {
     };
   }
 
-  conditionDialogClose () {
+  abilitySelectDialogClose () {
     this.setState({
       selectVal: {},
       selectValId: ''
     });
-    this.props.conditionDialogClose();
+    this.props.abilitySelectDialogClose();
   }
 
   treeItemClick (optionVal) {
@@ -71,17 +71,17 @@ class ConditionDialog extends Component {
   confirmCondition () {
     const { selectVal } = this.state
     const { conditionSet } = this.props
-    this.conditionDialogClose();
+    this.abilitySelectDialogClose();
     conditionSet(selectVal)
   }
 
   render () {
     const { selectValId } = this.state
-    const { conditionDialog } = this.props
+    const { abilitySelectDialog } = this.props
     return (
       <CustomDialog
-        open={conditionDialog}
-        onClose={() => this.conditionDialogClose()}>
+        open={abilitySelectDialog}
+        onClose={() => this.abilitySelectDialogClose()}>
         <h2 className={css.headerText}>条件選択</h2>
         <CustomTreeView
           defaultCollapseIcon={<ExpandMoreIcon />}
@@ -134,4 +134,4 @@ class ConditionDialog extends Component {
   }
 }
 
-export default ConditionDialog;
+export default AbilitySelectDialog;

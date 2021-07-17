@@ -14,25 +14,14 @@
   box-shadow: 10px 0 0 0 #1b1515, -10px 0 0 0 #1b1515;
 }
 
-.conditionBoxWrap {
-  display: flex;
-  margin: 8px 0;
-  border: solid 1px #1b1515;
-}
-
-.firstConditionBoxWrap {
-  display: flex;
-  margin: 8px 0;
-  border: solid 1px #1b1515;
-  margin-top: 16px;
-}
-
-.elementBoxWrap {
-  margin-top: 10px;
-}
-
 .divider {
   width: 1px;
   background-color: #1b1515;
   border: none;
+}
+
+@media screen and (max-width:1000px) {
+  .addButton {
+    display: none;
+  }
 }

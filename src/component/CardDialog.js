@@ -53,7 +53,7 @@ const Transition = React.forwardRef(function Transition(props, ref) {
   return <Zoom direction="up" ref={ref} {...props} />;
 });
 
-class HeaderSettingDialog extends Component {
+class CardDialog extends Component {
   constructor (props) {
     super(props);
     this.state = {};
@@ -89,7 +89,7 @@ class HeaderSettingDialog extends Component {
       cardDialogClose
     } = this.props
     return (
-      <div className={css.testtest}>
+      <div>
         <div className={cardDialog ? css.buttons : css.noDisplayButtons }>
           {this.isDisabledBeforeCard() ?
             null:
@@ -118,4 +118,4 @@ class HeaderSettingDialog extends Component {
   }
 }
 
-export default HeaderSettingDialog;
+export default CardDialog;

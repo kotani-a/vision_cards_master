@@ -1,0 +1,407 @@
+[
+  {
+    "id": "name",
+    "label": "名前",
+    "inputType": "text",
+    "required": true
+  },
+  {
+    "id": "rarity",
+    "label": "レアリティ",
+    "inputType": "raritySelect",
+    "required": true
+  },
+  {
+    "id": "cost",
+    "label": "コスト",
+    "inputType": "number",
+    "required": true
+  },
+  {
+    "id": "partyAbility1Accordion",
+    "label": "パーティーアビリティ1",
+    "inputType": "accordion",
+    "required": false,
+    "accordionDetails": [
+      {
+        "id": "partyAbility1AutoComplete",
+        "label": "アビリティ選択",
+        "inputType": "autocompleteWidthTree",
+        "required": false,
+        "linkItem": [
+          { "id": "partyAbility1", "set": "label" },
+          { "id": "partyAbility1TypeLabel", "set": "label" },
+          { "id": "partyAbility1Type", "set": "type" }
+        ]
+      },
+      {
+        "id": "partyAbility1",
+        "label": "アビリティ名",
+        "inputType": "text",
+        "required": true
+      },
+      {
+        "id": "partyAbility1TypeLabel",
+        "label": "アビリティタイプラベル",
+        "inputType": "text",
+        "required": true
+      },
+      {
+        "id": "partyAbility1Type",
+        "label": "アビリティタイプ",
+        "inputType": "text",
+        "required": true
+      },
+      {
+        "id": "partyAbility1Conditions",
+        "label": "アビリティ発動条件",
+        "inputType": "text",
+        "required": false
+      }
+    ]
+  },
+  {
+    "id": "partyAbility2Accordion",
+    "label": "パーティーアビリティ2",
+    "inputType": "accordion",
+    "required": false,
+    "accordionDetails": [
+      {
+        "id": "partyAbility2AutoComplete",
+        "label": "アビリティ選択",
+        "inputType": "autocompleteWidthTree",
+        "required": false,
+        "linkItem": [
+          { "id": "partyAbility2", "set": "label" },
+          { "id": "partyAbility2TypeLabel", "set": "label" },
+          { "id": "partyAbility2Type", "set": "type" }
+        ]
+      },
+      {
+        "id": "partyAbility2",
+        "label": "アビリティ名",
+        "inputType": "text",
+        "required": false
+      },
+      {
+        "id": "partyAbility2TypeLabel",
+        "label": "アビリティタイプラベル",
+        "inputType": "text",
+        "required": false
+      },
+      {
+        "id": "partyAbility2Type",
+        "label": "アビリティタイプ",
+        "inputType": "text",
+        "required": false
+      },
+      {
+        "id": "partyAbility2Conditions",
+        "label": "アビリティ発動条件",
+        "inputType": "text",
+        "required": false
+      }
+    ]
+  },
+  {
+    "id": "ability1Accordion",
+    "label": "アビリティ1",
+    "inputType": "accordion",
+    "required": true,
+    "accordionDetails": [
+      {
+        "id": "ability1AutoComplete",
+        "label": "アビリティ選択",
+        "inputType": "autocompleteWidthTree",
+        "required": false,
+        "linkItem": [
+          { "id": "ability1", "set": "label" },
+          { "id": "ability1TypeLabel", "set": "label" },
+          { "id": "ability1Type", "set": "type" }
+        ]
+      },
+      {
+        "id": "ability1",
+        "label": "アビリティ名",
+        "inputType": "text",
+        "required": true
+      },
+      {
+        "id": "ability1TypeLabel",
+        "label": "アビリティタイプラベル",
+        "inputType": "text",
+        "required": true
+      },
+      {
+        "id": "ability1Type",
+        "label": "アビリティタイプ",
+        "inputType": "text",
+        "required": true
+      },
+      {
+        "id": "ability1Conditions",
+        "label": "アビリティ発動条件",
+        "inputType": "text",
+        "required": false
+      }
+    ]
+  },
+  {
+    "id": "ability2Accordion",
+    "label": "アビリティ2",
+    "inputType": "accordion",
+    "required": false,
+    "accordionDetails": [
+      {
+        "id": "ability2AutoComplete",
+        "label": "アビリティ選択",
+        "inputType": "autocompleteWidthTree",
+        "required": false,
+        "linkItem": [
+          { "id": "ability2", "set": "label" },
+          { "id": "ability2TypeLabel", "set": "label" },
+          { "id": "ability2Type", "set": "type" }
+        ]
+      },
+      {
+        "id": "ability2",
+        "label": "アビリティ名",
+        "inputType": "text",
+        "required": false
+      },
+      {
+        "id": "ability2TypeLabel",
+        "label": "アビリティタイプラベル",
+        "inputType": "text",
+        "required": false
+      },
+      {
+        "id": "ability2Type",
+        "label": "アビリティタイプ",
+        "inputType": "text",
+        "required": false
+      },
+      {
+        "id": "ability2Conditions",
+        "label": "アビリティ発動条件",
+        "inputType": "text",
+        "required": false
+      }
+    ]
+  },
+  {
+    "id": "ability3Accordion",
+    "label": "アビリティ3",
+    "inputType": "accordion",
+    "required": false,
+    "accordionDetails": [
+      {
+        "id": "ability3AutoComplete",
+        "label": "アビリティ選択",
+        "inputType": "autocompleteWidthTree",
+        "required": false,
+        "linkItem": [
+          { "id": "ability3", "set": "label" },
+          { "id": "ability3TypeLabel", "set": "label" },
+          { "id": "ability3Type", "set": "type" }
+        ]
+      },
+      {
+        "id": "ability3",
+        "label": "アビリティ名",
+        "inputType": "text",
+        "required": false
+      },
+      {
+        "id": "ability3TypeLabel",
+        "label": "アビリティタイプラベル",
+        "inputType": "text",
+        "required": false
+      },
+      {
+        "id": "ability3Type",
+        "label": "アビリティタイプ",
+        "inputType": "text",
+        "required": false
+      },
+      {
+        "id": "ability3Conditions",
+        "label": "アビリティ発動条件",
+        "inputType": "text",
+        "required": false
+      }
+    ]
+  },
+  {
+    "id": "ability4Accordion",
+    "label": "アビリティ4",
+    "inputType": "accordion",
+    "required": false,
+    "accordionDetails": [
+      {
+        "id": "ability4AutoComplete",
+        "label": "アビリティ選択",
+        "inputType": "autocompleteWidthTree",
+        "required": false,
+        "linkItem": [
+          { "id": "ability4", "set": "label" },
+          { "id": "ability4TypeLabel", "set": "label" },
+          { "id": "ability4Type", "set": "type" }
+        ]
+      },
+      {
+        "id": "ability4",
+        "label": "アビリティ名",
+        "inputType": "text",
+        "required": false
+      },
+      {
+        "id": "ability4TypeLabel",
+        "label": "アビリティタイプラベル",
+        "inputType": "text",
+        "required": false
+      },
+      {
+        "id": "ability4Type",
+        "label": "アビリティタイプ",
+        "inputType": "text",
+        "required": false
+      },
+      {
+        "id": "ability4Conditions",
+        "label": "アビリティ発動条件",
+        "inputType": "text",
+        "required": false
+      }
+    ]
+  },
+  {
+    "id": "bonusAbilityAccordion",
+    "label": "ボーナスアビリティ",
+    "inputType": "accordion",
+    "required": false,
+    "accordionDetails": [
+      {
+        "id": "bonusAbilityAutoComplete",
+        "label": "アビリティ選択",
+        "inputType": "autocompleteWidthTree",
+        "required": false,
+        "linkItem": [
+          { "id": "bonusAbility", "set": "label" },
+          { "id": "bonusAbilityTypeLabel", "set": "label" },
+          { "id": "bonusAbilityType", "set": "type" }
+        ]
+      },
+      {
+        "id": "bonusAbility",
+        "label": "アビリティ名",
+        "inputType": "text",
+        "required": false
+      },
+      {
+        "id": "bonusAbilityTypeLabel",
+        "label": "アビリティタイプラベル",
+        "inputType": "text",
+        "required": false
+      },
+      {
+        "id": "bonusAbilityType",
+        "label": "アビリティタイプ",
+        "inputType": "text",
+        "required": false
+      },
+      {
+        "id": "bonusAbilityActiveElement",
+        "label": "アビリティ発動属性",
+        "inputType": "elementSelect",
+        "required": false
+      }
+    ]
+  },
+  {
+    "id": "hp",
+    "label": "HP",
+    "inputType": "rangeNumber",
+    "max": 550,
+    "step": 55,
+    "required": true
+  },
+  {
+    "id": "tp",
+    "label": "TP",
+    "inputType": "rangeNumber",
+    "max": 50,
+    "step": 5,
+    "required": true
+  },
+  {
+    "id": "ap",
+    "label": "AP",
+    "inputType": "rangeNumber",
+    "max": 50,
+    "step": 5,
+    "required": true
+  },
+  {
+    "id": "power",
+    "label": "攻撃",
+    "inputType": "rangeNumber",
+    "max": 250,
+    "step": 25,
+    "required": true
+  },
+  {
+    "id": "magic",
+    "label": "魔法",
+    "inputType": "rangeNumber",
+    "max": 250,
+    "step": 25,
+    "required": true
+  },
+  {
+    "id": "shield",
+    "label": "防御",
+    "inputType": "rangeNumber",
+    "max": 10,
+    "step": 1,
+    "required": true
+  },
+  {
+    "id": "barrier",
+    "label": "精神",
+    "inputType": "rangeNumber",
+    "max": 10,
+    "step": 1,
+    "required": true
+  },
+  {
+    "id": "dexterity",
+    "label": "器用さ",
+    "inputType": "rangeNumber",
+    "max": 100,
+    "step": 10,
+    "required": true
+  },
+  {
+    "id": "speed",
+    "label": "素早さ",
+    "inputType": "rangeNumber",
+    "max": 10,
+    "step": 1,
+    "required": true
+  },
+  {
+    "id": "luck",
+    "label": "運",
+    "inputType": "rangeNumber",
+    "max": 50,
+    "step": 5,
+    "required": true
+  },
+  {
+    "id": "limited",
+    "label": "限定",
+    "inputType": "check",
+    "required": true
+  }
+]

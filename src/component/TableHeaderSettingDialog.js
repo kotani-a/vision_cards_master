@@ -5,7 +5,7 @@ import { DndProvider } from 'react-dnd';
 import { HTML5Backend } from 'react-dnd-html5-backend';
 import  DraggableItemGroup from './DraggableItemGroup.js';
 import { withStyles } from '@material-ui/core/styles';
-import css from '../css/HeaderSettingDialog.module.css'
+import css from '../css/TableHeaderSettingDialog.module.css'
 
 const CustomDialog = withStyles(() => ({
   root: {
@@ -27,12 +27,13 @@ const CustomButton = withStyles(() => ({
   },
 }))(Button);
 
-class HeaderSettingDialog extends Component {
+class TableHeaderSettingDialog extends Component {
   constructor (props) {
     super(props);
     this.state = {
       tmpHeaders: [
         { id: 'rarity', label: 'レアリティ', display: true },
+        { id: 'cost', label: 'コスト', display: true },
         { id: 'name', label: '名前', display: true },
         { id: 'partyAbility1', label: 'パーティーアビリティ1', display: true },
         { id: 'partyAbility2', label: 'パーティーアビリティ2', display: false },
@@ -107,4 +108,4 @@ class HeaderSettingDialog extends Component {
   }
 }
 
-export default HeaderSettingDialog;
+export default TableHeaderSettingDialog;

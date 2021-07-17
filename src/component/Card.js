@@ -68,6 +68,18 @@ class Card extends Component {
           <div className={css.headerDecoration2}/>
           <span className={css.rarity}>{this.makeRarityLabel(card.rarity)}</span>
           <div className={css.abilityWrap}>
+          <div className={css.paragraph}>
+              <span className={css.keyText}>パーティーアビリティ1: </span>
+              <br/>
+              <span>{card.partyAbility1}{card.partyAbility1Conditions ? <span>({card.partyAbility1Conditions})</span> : null}</span>
+            </div>
+            {card.partyAbility2 ?
+              <div className={css.paragraph}>
+                <span className={css.keyText}>パーティーアビリティ2: </span>
+                <br/>
+                <span>{card.partyAbility2}{card.partyAbility2Conditions ? <span>({card.partyAbility2Conditions})</span> : null}</span>
+              </div>
+            : null}
             <div className={css.paragraph}>
               <span className={css.keyText}>アビリティ1: </span>
               <br/>
@@ -92,18 +104,6 @@ class Card extends Component {
                 <span className={css.keyText}>アビリティ4: </span>
                 <br/>
                 <span>{card.ability4}{card.ability4Conditions ? <span>({card.ability4Conditions})</span> : null}</span>
-              </div>
-            : null}
-            <div className={css.paragraph}>
-              <span className={css.keyText}>パーティーアビリティ1: </span>
-              <br/>
-              <span>{card.partyAbility1}{card.partyAbility1Conditions ? <span>({card.partyAbility1Conditions})</span> : null}</span>
-            </div>
-            {card.partyAbility2 ?
-              <div className={css.paragraph}>
-                <span className={css.keyText}>パーティーアビリティ2: </span>
-                <br/>
-                <span>{card.partyAbility2}{card.partyAbility2Conditions ? <span>({card.partyAbility2Conditions})</span> : null}</span>
               </div>
             : null}
             {card.bonusAbility ?

@@ -106,7 +106,8 @@ class CardsTable extends Component {
     const id = setInterval(() => {
       haederHeight = document.getElementById("header-wrap").clientHeight
       const tableFooterHeight = 52
-      const tableHeight = window.innerHeight - haederHeight - tableFooterHeight
+      const tableBottomMargin = 2
+      const tableHeight = window.innerHeight - haederHeight - tableFooterHeight - tableBottomMargin
       this.setState({ tableHeight: tableHeight });
       if (haederHeight > 16) {
         clearInterval(id)

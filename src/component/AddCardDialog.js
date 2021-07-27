@@ -268,36 +268,7 @@ class AddCardDialog extends Component {
     }})
   }
 
-  addCard () {
-    const { card } = this.state
-    this.setState({inserting: true})
-    const myHeaders = new Headers();
-    myHeaders.append("Content-Type", "application/json");
-    const raw = JSON.stringify(card);
-    const requestOptions = {
-        method: 'POST',
-        headers: myHeaders,
-        body: raw,
-        redirect: 'follow'
-    };
-    fetch("https://e7hi87nfd6.execute-api.ap-northeast-1.amazonaws.com/dev", requestOptions)
-    .then(response => response.text())
-    .then(result => {
-      if (JSON.parse(result).statusCode === 200) {
-        this.resetCard()
-        this.resetAutoCompletes()
-        this.confirmDialogClose()
-        this.props.addCardDialogClose()
-        this.props.getCards()
-      } else {
-        this.setState({ errorMesseage: JSON.parse(result).body })
-      }
-    })
-    .catch(error => {
-      console.log('error', error)
-    })
-    this.setState({inserting: false})
-  }
+  addCard () {}
 
   setCardValue (value, id) {
     const { card } = this.state

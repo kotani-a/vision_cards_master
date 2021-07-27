@@ -1,11 +1,13 @@
 import React, { Component } from 'react';
 import './App.css';
-import axios from 'axios';
+// import axios from 'axios';
 
 import CardsTable from './component/CardsTable.js'
 import HeaderButtons from './component/HeaderButtons.js'
 import Header from './component/Header.js'
 import Progress from './component/Progress.js'
+
+import cardsList from './constants/cards.json';
 
 class App extends Component {
   constructor (props) {
@@ -132,7 +134,8 @@ class App extends Component {
   getCards = async () => {
     this.setState({ loading: true });
     try {
-      const result = await axios.get("https://ie5xbafoi6.execute-api.ap-northeast-1.amazonaws.com/dev");
+      // const result = await axios.get("");
+      const result = cardsList;
       this.setState({
         cards: result.data,
         loading: false

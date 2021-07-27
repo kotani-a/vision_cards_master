@@ -200,7 +200,7 @@ class HeaderButtons extends Component {
     } = this.state
     return (
       <div className={css.conditionsWrap}>
-        <div class={css.addButton}>
+        <div className={css.addButton}>
           <CustomAddBoxIconButton
             onClick={() => this.addCardDialogOpen()}>
             <AddBoxIcon style={{ color: '#1b1515' }}/>

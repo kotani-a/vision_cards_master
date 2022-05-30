@@ -548,6 +548,11 @@
             "label": "防御貫通率アップ"
           },
           {
+            "id": "others-penetrationUp-barrierPenetrationUp",
+            "type": "barrierPenetrationUp",
+            "label": "精神貫通率アップ"
+          },
+          {
             "id": "others-penetrationUp-slashingResistPenetrationUp",
             "type": "slashingResistPenetrationUp",
             "label": "斬撃攻撃耐性貫通率アップ"

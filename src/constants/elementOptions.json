@@ -52,5 +52,11 @@
     "label": "光属性",
     "color": "#eeeeee",
     "backgroundColor": "#f0f0f0"
+  },
+  {
+    "element": "iceWater",
+    "label": "氷/水属性",
+    "color": "#6c78bd",
+    "backgroundColor": "#94fff9"
   }
 ]
